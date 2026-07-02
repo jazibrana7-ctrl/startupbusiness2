@@ -52,11 +52,25 @@ if "logged_in_user_key" not in st.session_state:
 if "initial_investment" not in st.session_state:
     st.session_state.initial_investment = 350000.0
 
-# The Ledger now includes an ID, Status, and Deletion tracking
+# The Ledger initialization WITH an auto-updater for old data
+expected_columns = [
+    "ID", "Timestamp", "Logged By", "Type", "Category", 
+    "Amount", "Description", "Status", "Deleted By", "Deleted At"
+]
+
 if "ledger" not in st.session_state:
-    st.session_state.ledger = pd.DataFrame(columns=[
-        "ID", "Timestamp", "Logged By", "Type", "Category", "Amount", "Description", "Status", "Deleted By", "Deleted At"
-    ])
+    st.session_state.ledger = pd.DataFrame(columns=expected_columns)
+else:
+    # This patches the old memory hangover automatically
+    for col in expected_columns:
+        if col not in st.session_state.ledger.columns:
+            st.session_state.ledger[col] = "-"
+            if col == "Status":
+                st.session_state.ledger["Status"] = "Active"
+            if col == "ID":
+                import uuid
+                # Generate missing IDs for old entries
+                st.session_state.ledger["ID"] = [str(uuid.uuid4())[:8] for _ in range(len(st.session_state.ledger))]
 
 # ==============================================================================
 # 2. TWO-STEP VISUAL LOGIN SYSTEM
