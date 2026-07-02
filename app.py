@@ -12,9 +12,9 @@ st.set_page_config(page_title="Rickshaw Hisab - Secure", page_icon="🛺", layou
 
 # Hardcoded partner credentials (In a real app, never put passwords in plain text!)
 USER_CREDENTIALS = {
-    "jazib": {"name": "Jazib Ali", "password": "jazibpassword123", "email": "jazib@example.com"},
-    "abdullah": {"name": "Abdullah Ch", "password": "abdullahpassword123", "email": "abdullah@example.com"},
-    "changaiz": {"name": "Agha Changaiz", "password": "agha_password123", "email": "changaiz@example.com"}
+    "jazib": {"name": "Jazib Ali", "password": "jazibpassword123", "email": "jazibrana7@gmail.com"},
+    "abdullah": {"name": "Abdullah Ch", "password": "abdullahpassword123", "email": "pakroast@gmail.com"},
+    "changaiz": {"name": "Agha Changaiz", "password": "aghapassword123", "email": "halakukhan027@gmail.com"}
 }
 
 # System Gmail credentials for sending alerts (GET AN APP PASSWORD FROM GMAIL)
